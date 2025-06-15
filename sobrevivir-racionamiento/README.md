@@ -1,6 +1,6 @@
 # Sobrevivir al Racionamiento
 
-Minijuego educativo que simula la supervivencia de una familia durante los años del hambre en el franquismo. Todo el juego funciona con HTML, CSS y JavaScript sin dependencias adicionales.
+Minijuego educativo que simula la supervivencia de una familia durante los años del hambre en el franquismo. Todo el juego funciona con HTML, CSS y JavaScript sin dependencias adicionales. La interfaz muestra el día actual, el dinero disponible y posibles eventos.
 
 ## Estructura
 - `index.html` punto de entrada.
@@ -16,7 +16,7 @@ En entornos con Node disponible puede lanzarse un servidor estático simple:
 npx serve sobrevivir-racionamiento
 ```
 
-O bien abrir `index.html` directamente en un navegador moderno.
+También puede abrir `index.html` directamente en un navegador moderno y pulsar **Siguiente día** para avanzar por la semana.
 
 ## Pruebas
 

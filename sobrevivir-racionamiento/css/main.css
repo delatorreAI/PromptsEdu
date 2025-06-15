@@ -13,3 +13,18 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 }
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#acciones {
+    margin: 20px 0;
+}
+
+#evento {
+    min-height: 40px;
+    font-style: italic;
+}

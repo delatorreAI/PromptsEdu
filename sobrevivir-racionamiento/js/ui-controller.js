@@ -25,4 +25,15 @@ function adaptInterface() {
     }
 }
 
+function updateUI(state) {
+    document.getElementById('fecha').textContent = `Día ${state.currentDay}`;
+    document.getElementById('dinero').textContent = `💰 ${state.resources.dinero}₧`;
+    document.getElementById('dia').textContent = `${state.currentDay}/7`;
+    document.getElementById('riesgo').textContent = `Riesgo: ${state.riesgoPolicial}%`;
+    const eventoEl = document.getElementById('evento');
+    eventoEl.textContent = state.lastEvent ? state.lastEvent.titulo || state.lastEvent.tipo : '';
+}
+
+window.gameUI = { updateUI };
+
 window.addEventListener('load', adaptInterface);

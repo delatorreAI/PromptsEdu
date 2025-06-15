@@ -36,4 +36,54 @@ function loadGame() {
     }
 }
 
-window.addEventListener('beforeunload', saveGame);
+function applyDailyConsumption() {
+    Object.keys(gameState.family).forEach(key => {
+        const miembro = gameState.family[key];
+        if (gameState.resources.comida.pan > 0) {
+            gameState.resources.comida.pan--;
+            miembro.hambre = Math.min(100, miembro.hambre + 10);
+            miembro.alimentacionActual = 100;
+        } else {
+            miembro.hambre = Math.max(0, miembro.hambre - 20);
+            miembro.alimentacionActual = 0;
+        }
+    });
+    calcularSaludFamiliar(Object.values(gameState.family));
+}
+
+function nextDay() {
+    if (gameState.currentDay >= 7) {
+        gameState.gameCompleted = true;
+        saveGame();
+        alert('Fin de la semana');
+        return;
+    }
+    applyDailyConsumption();
+    const evento = generarEventoAleatorio(gameState.currentDay, gameState);
+    if (evento) {
+        gameState.lastEvent = evento;
+        if (evento.efectos.comida_extra) {
+            gameState.resources.comida.pan += evento.efectos.comida_extra;
+        }
+        if (evento.efectos.riesgo) {
+            gameState.riesgoPolicial += evento.efectos.riesgo;
+        }
+    } else {
+        gameState.lastEvent = null;
+    }
+    gameState.currentDay++;
+    saveGame();
+    window.gameUI.updateUI(gameState);
+}
+
+function initGame() {
+    const saved = loadGame();
+    if (saved) Object.assign(gameState, saved);
+    window.gameUI.updateUI(gameState);
+    document.getElementById('siguiente-dia').addEventListener('click', nextDay);
+}
+
+window.addEventListener('load', () => {
+    initGame();
+    window.addEventListener('beforeunload', saveGame);
+});
