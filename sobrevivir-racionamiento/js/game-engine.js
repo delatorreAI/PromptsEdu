@@ -15,6 +15,15 @@ const gameState = {
     },
     decisions: [],
     riesgoPolicial: 15,
+    history: {
+        riesgo: [],
+        salud: {
+            padre: [],
+            madre: [],
+            hijo: [],
+            hija: []
+        }
+    },
     gameCompleted: false
 };
 
@@ -37,3 +46,44 @@ function loadGame() {
 }
 
 window.addEventListener('beforeunload', saveGame);
+
+function recordStatus() {
+    gameState.history.riesgo.push(gameState.riesgoPolicial);
+    Object.keys(gameState.family).forEach(id => {
+        const m = gameState.family[id];
+        gameState.history.salud[id].push(m.salud);
+    });
+}
+
+function showEndScreen(msg) {
+    const scr = document.getElementById('end-screen');
+    const msgEl = document.getElementById('end-message');
+    if (scr && msgEl) {
+        msgEl.textContent = msg;
+        scr.classList.remove('hidden');
+    } else {
+        alert(msg);
+    }
+}
+
+function checkEndConditions() {
+    const dead = Object.values(gameState.family).some(m => m.salud <= 0);
+    if (dead || gameState.riesgoPolicial >= 100) {
+        showEndScreen('Game Over');
+        return true;
+    }
+    if (gameState.currentDay > 7 && !gameState.gameCompleted) {
+        gameState.gameCompleted = true;
+        showEndScreen('¡Victoria!');
+        return true;
+    }
+    return false;
+}
+
+function advanceDay() {
+    recordStatus();
+    if (checkEndConditions()) return;
+    gameState.currentDay += 1;
+}
+
+window.addEventListener('load', recordStatus);
