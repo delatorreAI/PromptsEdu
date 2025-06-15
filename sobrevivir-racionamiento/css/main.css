@@ -10,6 +10,31 @@ body {
     width: 100%;
     min-height: var(--alto-minimo);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    padding: 10px;
+}
+
+.inventory-items .alimento {
+    border: 1px solid var(--tinta-negra);
+    padding: 4px;
+    margin-bottom: 4px;
+    cursor: grab;
+}
+
+.alimento.dragging {
+    opacity: 0.5;
+}
+
+.plate-drop {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed var(--tinta-negra);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
 }
