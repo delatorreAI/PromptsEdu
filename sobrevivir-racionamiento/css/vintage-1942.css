@@ -38,3 +38,12 @@
 .boton-1942:hover {
     transform: translateY(-2px);
 }
+
+.inventory-items .alimento {
+    background: var(--papel-viejo);
+    border: 2px solid var(--tinta-negra);
+}
+
+.plate-drop {
+    background: rgba(245, 230, 211, 0.5);
+}

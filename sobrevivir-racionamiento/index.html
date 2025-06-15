@@ -15,7 +15,26 @@
     <meta name="keywords" content="franquismo, educación, historia, memoria histórica">
 </head>
 <body>
-    <div id="game-container"></div>
+    <div id="game-container">
+        <aside id="inventory-sidebar" class="sidebar left">
+            <h2>Inventario</h2>
+            <div id="inventory-items" class="inventory-items"></div>
+        </aside>
+
+        <main id="main-area">
+            <div id="plate-area" class="plates">
+                <div class="plate-drop" data-miembro="padre">Padre</div>
+                <div class="plate-drop" data-miembro="madre">Madre</div>
+                <div class="plate-drop" data-miembro="hijo">Hijo</div>
+                <div class="plate-drop" data-miembro="hija">Hija</div>
+            </div>
+        </main>
+
+        <aside id="family-sidebar" class="sidebar right">
+            <h2>Familia</h2>
+            <div id="family-status"></div>
+        </aside>
+    </div>
 
     <!-- Scripts -->
     <script src="js/historical-data.js"></script>
