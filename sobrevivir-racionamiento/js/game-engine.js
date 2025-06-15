@@ -45,7 +45,9 @@ function loadGame() {
     }
 }
 
-window.addEventListener('beforeunload', saveGame);
+if (typeof window !== 'undefined') {
+    window.addEventListener('beforeunload', saveGame);
+}
 
 function recordStatus() {
     gameState.history.riesgo.push(gameState.riesgoPolicial);
@@ -86,4 +88,16 @@ function advanceDay() {
     gameState.currentDay += 1;
 }
 
-window.addEventListener('load', recordStatus);
+function nextDay() {
+    advanceDay();
+    return gameState.currentDay;
+}
+
+if (typeof window !== 'undefined') {
+    window.addEventListener('load', recordStatus);
+    window.nextDay = nextDay;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { gameState, saveGame, loadGame, nextDay };
+}
