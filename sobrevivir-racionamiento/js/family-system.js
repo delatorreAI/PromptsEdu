@@ -23,3 +23,15 @@ function calcularSaludFamiliar(familiaEstado) {
         miembro.salud = Math.max(0, Math.min(100, miembro.salud + cambio));
     });
 }
+
+function aplicarEfectosHambre(familiaEstado) {
+    familiaEstado.forEach(miembro => {
+        let penalizacion = 0;
+        if (miembro.hambre < 20) penalizacion = 20;
+        else if (miembro.hambre < 40) penalizacion = 10;
+        else if (miembro.hambre < 60) penalizacion = 5;
+        if (penalizacion > 0) {
+            miembro.salud = Math.max(0, miembro.salud - penalizacion);
+        }
+    });
+}
