@@ -1,0 +1,15 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background-color: var(--papel-viejo);
+    color: var(--tinta-negra);
+}
+
+#game-container {
+    width: 100%;
+    min-height: var(--alto-minimo);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+}
