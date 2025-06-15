@@ -6,7 +6,9 @@ Minijuego educativo que simula la supervivencia de una familia durante los años
 - `index.html` punto de entrada.
 - `css/` estilos generales y tema visual de 1942.
 - `js/` lógica de juego dividida en modulos.
-- `assets/` espacio para imagenes y datos.
+- `assets/` espacio para recursos del juego.
+  - `assets/images/` ilustraciones y arte.
+  - `assets/data/` ficheros JSON con datos historicos.
 
 ## Ejecución
 
